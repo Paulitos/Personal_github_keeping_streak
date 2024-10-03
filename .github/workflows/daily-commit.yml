@@ -2,7 +2,7 @@ name: Daily Commit
 
 on:
   schedule:
-    - cron: '10 13 * * *'  # Run daily at 13:10 UTC
+    - cron: '55 13 * * *'  # Run daily at 13:55 UTC
   workflow_dispatch:
 
 jobs:
@@ -23,4 +23,4 @@ jobs:
 
       - name: Push changes
         run: |
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Paulitos/daily-commits-github.git
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Paulitos/Personal_github_keeping_streak.git
