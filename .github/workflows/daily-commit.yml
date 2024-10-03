@@ -1,0 +1,26 @@
+name: Daily Commit
+
+on:
+  schedule:
+    - cron: '10 13 * * *'  # Run daily at 13:10 UTC
+  workflow_dispatch:
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Make a change and commit
+        run: |
+          echo "$(date)" > update.log
+          git config --global user.name "Paulitos"
+          git config --global user.email "Paulitos@users.noreply.github.com"  # Use no-reply email
+          git add update.log
+          git commit -m "Daily update on $(date)" || echo "No changes to commit"
+
+      - name: Push changes
+        run: |
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Paulitos/daily-commits-github.git
